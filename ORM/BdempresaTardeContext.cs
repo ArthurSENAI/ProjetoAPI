@@ -40,4 +40,7 @@ public partial class BdempresaTardeContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    public DbSet<ProjetoAPITarde.Model.Funcionario> Funcionario { get; set; } = default!;
 }
+

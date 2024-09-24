@@ -4548,11 +4548,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Aluno Noite\\source\\repos\\ProjetoAPITarde\\ProjetoAPITarde.csproj",
+      "projectUniqueName": "C:\\Users\\Aluno Noite\\Documents\\GitHub\\ProjetoAPI\\ProjetoAPITarde.csproj",
       "projectName": "ProjetoAPITarde",
-      "projectPath": "C:\\Users\\Aluno Noite\\source\\repos\\ProjetoAPITarde\\ProjetoAPITarde.csproj",
+      "projectPath": "C:\\Users\\Aluno Noite\\Documents\\GitHub\\ProjetoAPI\\ProjetoAPITarde.csproj",
       "packagesPath": "C:\\Users\\Aluno Noite\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Aluno Noite\\source\\repos\\ProjetoAPITarde\\obj\\",
+      "outputPath": "C:\\Users\\Aluno Noite\\Documents\\GitHub\\ProjetoAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Aluno Noite\\AppData\\Roaming\\NuGet\\NuGet.Config",
