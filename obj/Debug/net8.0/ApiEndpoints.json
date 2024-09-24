@@ -1,23 +1,28 @@
 [
   {
-    "ContainingType": "ProjetoAPITarde.Controllers.WeatherForecastController",
+    "ContainingType": "ProjetoAPITarde.Controllers.FuncionarioController",
+    "Method": "Add",
+    "RelativePath": "api/v1/funcionarios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fun",
+        "Type": "ProjetoAPITarde.ViewModel.FuncionarioViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProjetoAPITarde.Controllers.FuncionarioController",
     "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "RelativePath": "api/v1/funcionarios",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProjetoAPITarde.WeatherForecast, ProjetoAPITarde, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
   }
 ]

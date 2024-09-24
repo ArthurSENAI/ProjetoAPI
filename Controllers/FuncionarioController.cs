@@ -15,9 +15,24 @@ namespace ProjetoAPITarde.Controllers
             _funcionarioRepositorio = funcionarioRepositorio;
         }
 
+
+        [HttpPost]
         public IActionResult Add(FuncionarioViewModel fun)
         {
             var funcionario = new Funcionario(fun.Nome, fun.Idade, null);
+
+            _funcionarioRepositorio.Add(funcionario);
+
+            return Ok();
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            var funcionarios = _funcionarioRepositorio.Get();
+
+            return Ok(funcionarios);
+
         }
     }
 }
