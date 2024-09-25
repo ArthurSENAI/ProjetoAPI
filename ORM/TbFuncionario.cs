@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ProjetoAPITarde.ORM;
+namespace ProjetoAPIWEB.ORM;
 
 public partial class TbFuncionario
 {
@@ -11,5 +11,5 @@ public partial class TbFuncionario
 
     public int Idade { get; set; }
 
-    public byte[] Foto { get; set; } = null!;
+    public byte[]? Foto { get; set; }
 }

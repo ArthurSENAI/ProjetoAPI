@@ -1,38 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ProjetoAPITarde.Model;
-using ProjetoAPITarde.ViewModel;
+using ProjetoAPIWEB.Model;
+using ProjetoAPIWEB.Repositorio;
 
-namespace ProjetoAPITarde.Controllers
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace ProjetoAPIWEB.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("api/v1/funcionarios")]
     public class FuncionarioController : ControllerBase
     {
-        private readonly IFuncionarioRepositorio _funcionarioRepositorio;
+        private readonly FuncionarioR _funcionarioRepo;
 
-        public FuncionarioController(IFuncionarioRepositorio funcionarioRepositorio)
+        public FuncionarioController(FuncionarioR funcionarioRepo)
         {
-            _funcionarioRepositorio = funcionarioRepositorio;
+            _funcionarioRepo = funcionarioRepo;
         }
 
-
-        [HttpPost]
-        public IActionResult Add(FuncionarioViewModel fun)
-        {
-            var funcionario = new Funcionario(fun.Nome, fun.Idade, null);
-
-            _funcionarioRepositorio.Add(funcionario);
-
-            return Ok();
-        }
-
+        // GET: api/<FuncionarioController>
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult<List<Funcionario>> GetAll()
         {
-            var funcionarios = _funcionarioRepositorio.Get();
+            var funcionarios = _funcionarioRepo.GetAll();
+            return Ok(funcionarios); // Retorna a lista de Funcionarios
+        }
 
-            return Ok(funcionarios);
+        // GET api/<FuncionarioController>/5
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return "value";
+        }
 
+        // POST api/<FuncionarioController>
+        [HttpPost]
+        public void Post([FromBody] string value)
+        {
+        }
+
+        // PUT api/<FuncionarioController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/<FuncionarioController>/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
         }
     }
 }

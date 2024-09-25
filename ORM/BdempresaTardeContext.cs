@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace ProjetoAPITarde.ORM;
+namespace ProjetoAPIWEB.ORM;
 
 public partial class BdempresaTardeContext : DbContext
 {
@@ -31,7 +31,7 @@ public partial class BdempresaTardeContext : DbContext
             entity.Property(e => e.Foto).HasColumnName("foto");
             entity.Property(e => e.Idade).HasColumnName("idade");
             entity.Property(e => e.Nome)
-                .HasMaxLength(500)
+                .HasMaxLength(50)
                 .IsUnicode(false)
                 .HasColumnName("nome");
         });
@@ -40,7 +40,4 @@ public partial class BdempresaTardeContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-    public DbSet<ProjetoAPITarde.Model.Funcionario> Funcionario { get; set; } = default!;
 }
-

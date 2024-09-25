@@ -1,18 +1,16 @@
-﻿namespace ProjetoAPITarde.Model
+﻿namespace ProjetoAPIWEB.Model
 {
     public class Funcionario
     {
+
+        public int Id { get; set; }
+
         public string Nome { get; set; }
 
         public int Idade { get; set; }
 
-        public string? Foto { get; set; }
+        public byte[]? Foto { get; set; }
 
-        public Funcionario( string nome, int idade, string? foto)
-        {
-            Nome = nome;
-            Idade = idade;
-            Foto = foto;
-        }
+
     }
 }

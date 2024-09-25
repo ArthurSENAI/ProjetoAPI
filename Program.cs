@@ -1,16 +1,23 @@
-using ProjetoAPITarde.Model;
-using ProjetoAPITarde.ORM;
+using Microsoft.EntityFrameworkCore;
+using ProjetoAPIWEB.Repositorio;
+using ProjetoAPIWEB.ORM;
+using ProjetoAPIWEB.Repositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Adicione o contexto do banco de dados
+builder.Services.AddDbContext<BdempresaTardeContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Adicione o repositório FuncionarioR
+builder.Services.AddScoped<FuncionarioR>();
+
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddTransient<IFuncionarioRepositorio, FuncionarioRepositorio>();
 
 var app = builder.Build();
 
@@ -22,9 +29,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
