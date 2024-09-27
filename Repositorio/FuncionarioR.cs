@@ -1,4 +1,5 @@
-﻿using ProjetoAPIWEB.Model;
+﻿using Microsoft.AspNetCore.Mvc;
+using ProjetoAPIWEB.Model;
 using ProjetoAPIWEB.ORM;
 
 namespace ProjetoAPIWEB.Repositorio
@@ -12,14 +13,52 @@ namespace ProjetoAPIWEB.Repositorio
             _context = context;
         }
 
-        public void Add(Funcionario funcionario)
+        public void Add(Funcionario funcionario, IFormFile foto)
         {
-            throw new NotImplementedException();
+            // Verifica se uma foto foi enviada
+            byte[] fotoBytes = null;
+            if (foto != null && foto.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    foto.CopyTo(memoryStream);
+                    fotoBytes = memoryStream.ToArray();
+                }
+            }
+
+            // Cria uma nova entidade do tipo TbFuncionario a partir do objeto Funcionario recebido
+            var tbFuncionario = new TbFuncionario()
+            {
+                Nome = funcionario.Nome,
+                Idade = funcionario.Idade,
+                Foto = fotoBytes // Armazena a foto na entidade
+            };
+
+            // Adiciona a entidade ao contexto
+            _context.TbFuncionarios.Add(tbFuncionario);
+
+            // Salva as mudanças no banco de dados
+            _context.SaveChanges();
         }
 
-        public void Delete(Funcionario funcionario)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            // Busca a entidade existente no banco de dados pelo Id
+            var tbFuncionario = _context.TbFuncionarios.FirstOrDefault(f => f.Id == id);
+
+            // Verifica se a entidade foi encontrada
+            if (tbFuncionario != null)
+            {
+                // Remove a entidade do contexto
+                _context.TbFuncionarios.Remove(tbFuncionario);
+
+                // Salva as mudanças no banco de dados
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Funcionário não encontrado.");
+            }
         }
 
         public List<Funcionario> GetAll()
@@ -34,7 +73,9 @@ namespace ProjetoAPIWEB.Repositorio
                 {
                     Id = item.Id,
                     Nome = item.Nome,
-                    // Adicione aqui outras propriedades que precisar mapear
+                    Idade = item.Idade,
+                    Foto = item.Foto
+
                 };
 
                 listFun.Add(funcionario);
@@ -43,9 +84,57 @@ namespace ProjetoAPIWEB.Repositorio
             return listFun;
         }
 
-        public void Update(Funcionario funcionario)
+        public Funcionario GetById(int id)
         {
-            throw new NotImplementedException();
+            var item = _context.TbFuncionarios.FirstOrDefault(f => f.Id == id);
+            if (item == null)
+            {
+                return null;
+            }
+            var funcionario = new Funcionario
+            {
+                Id = item.Id,
+                Nome = item.Nome,
+                Idade = item.Idade,
+                Foto = item.Foto // Armazena a foto na entidade
+            };
+            return funcionario;
         }
+
+        public void Update(Funcionario funcionario, IFormFile foto)
+        {
+            // Busca a entidade existente no banco de dados pelo Id
+            var tbFuncionario = _context.TbFuncionarios.FirstOrDefault(f => f.Id == funcionario.Id);
+
+            // Verifica se a entidade foi encontrada
+            if (tbFuncionario != null)
+            {
+                // Atualiza os campos da entidade com os valores do objeto Funcionario recebido
+                tbFuncionario.Nome = funcionario.Nome;
+                tbFuncionario.Idade = funcionario.Idade;
+
+                // Verifica se uma nova foto foi enviada
+                if (foto != null && foto.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        foto.CopyTo(memoryStream);
+                        tbFuncionario.Foto = memoryStream.ToArray(); // Atualiza a foto na entidade
+                    }
+                }
+
+                // Atualiza as informações no contexto
+                _context.TbFuncionarios.Update(tbFuncionario);
+
+                // Salva as mudanças no banco de dados
+                _context.SaveChanges();
+            }
+            else
+            {
+                throw new Exception("Funcionário não encontrado.");
+            }
+        }
+
+
     }
 }

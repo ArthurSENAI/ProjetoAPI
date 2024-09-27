@@ -28,22 +28,26 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
+        "Name": "Nome",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "Idade",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Foto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ProjetoAPIWEB.Controllers.FuncionarioController",
-    "Method": "Get",
+    "Method": "GetById",
     "RelativePath": "api/Funcionario/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -57,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.String",
+        "Type": "ProjetoAPIWEB.Model.Funcionario",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -81,18 +85,22 @@
         "IsRequired": true
       },
       {
-        "Name": "value",
+        "Name": "Nome",
         "Type": "System.String",
-        "IsRequired": true
+        "IsRequired": false
+      },
+      {
+        "Name": "Idade",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Foto",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ProjetoAPIWEB.Controllers.FuncionarioController",
@@ -108,12 +116,22 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProjetoAPIWEB.Controllers.FuncionarioController",
+    "Method": "GetFoto",
+    "RelativePath": "api/Funcionario/{id}/foto",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
-    ]
+    ],
+    "ReturnTypes": []
   }
 ]
